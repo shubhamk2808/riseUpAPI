@@ -1,0 +1,23 @@
+{
+  "name": "riseup",
+  "version": "1.0.0",
+  "description": "travel and hotel booking web app",
+  "main": "index.js",
+  "repository": "https://github.com/shubhamk2808/riseUpAPI",
+  "author": "shubhamk2808 <87939320+shubhamk2808@users.noreply.github.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.9.1",
+    "nodemon": "^2.0.20"
+  }
+}
