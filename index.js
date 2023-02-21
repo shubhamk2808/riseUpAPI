@@ -6,7 +6,8 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 require('dotenv').config()
-const User = require('./models/user')
+const User = require('./models/user');
+const auth = require('./middlewares/auth');
 mongoose.set("strictQuery", false);
 const app = express();
 app.use(express.json())
@@ -91,12 +92,29 @@ app.post('/login', async (req, res) => {
       res.status(200).cookie("token", token, options).json({
         success: true,
         token,
+        user
       })
     }
   } catch (error) {
 
   }
 })
+
+app.get('/dashboard', auth, (req, res)=>{
+ console.log(req.user, "req user:::")
+  res.send('welcome to dashboard')
+})
+
+app.get('/settings', auth,  (req, res)=>{
+  res.send("Here are your all settings")
+})
+
+app.get('/logout', (req, res) => {
+  res.clearCookie('token'); // 'token' is the name of the cookie set during login
+  // res.redirect('/login');
+  res.status(200).send('Logged out Successfully')
+});
+
 
 // // Load configuration settings
 // const dbConfig = config.get('database');
